@@ -1,0 +1,1155 @@
+{
+  "name": "Grounded Fitness Acadiana - Multi-Platform Content Scheduler (DRAFT - NOT IN SCOPE)",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 7
+            },
+            {
+              "triggerAtHour": 15
+            }
+          ]
+        }
+      },
+      "id": "d84d3fa7-3264-46c1-8449-83235ae1b691",
+      "name": "Schedule Posts",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -1472,
+        432
+      ]
+    },
+    {
+      "parameters": {
+        "type": "schedule",
+        "date": "={{ $json.schedule_tiktok }}",
+        "posts": {
+          "post": [
+            {
+              "integrationId": "cmnw91u5o02ltl60y4cdcksxr",
+              "settings": {
+                "setting": [
+                  {
+                    "key": "__type",
+                    "stringValue": "tiktok"
+                  },
+                  {
+                    "key": "privacy_level",
+                    "stringValue": "PUBLIC_TO_EVERYONE"
+                  },
+                  {
+                    "key": "duet",
+                    "booleanValue": true,
+                    "valueType": "boolean"
+                  },
+                  {
+                    "key": "stitch",
+                    "booleanValue": true,
+                    "valueType": "boolean"
+                  },
+                  {
+                    "key": "comment",
+                    "booleanValue": true,
+                    "valueType": "boolean"
+                  },
+                  {
+                    "key": "autoAddMusic",
+                    "stringValue": "no"
+                  },
+                  {
+                    "key": "brand_content_toggle",
+                    "valueType": "boolean"
+                  },
+                  {
+                    "key": "brand_organic_toggle",
+                    "valueType": "boolean"
+                  },
+                  {
+                    "key": "content_posting_method",
+                    "stringValue": "DIRECT_POST"
+                  },
+                  {
+                    "key": "=title",
+                    "stringValue": "={{ (() => {\n  const raw = $json.videoTitle || $json.fileName || '';\n  return raw.replace(/\\.[^/.]+$/, '').trim();\n})() }}"
+                  }
+                ]
+              },
+              "value": {
+                "contentItem": [
+                  {
+                    "content": "={{ $json.tiktok_caption }} {{ $json.tiktok_hashtags ? $json.tiktok_hashtags.join(\" \") : \"\" }}",
+                    "image": {
+                      "imageItem": [
+                        {
+                          "id": "={{ $json.id }}",
+                          "path": "={{ $json.path }}"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-postiz.postiz",
+      "typeVersion": 1,
+      "position": [
+        1344,
+        0
+      ],
+      "id": "e9be24f2-bf58-42f3-8267-03037909042e",
+      "name": "Post to TikTok",
+      "credentials": {
+        "postizApi": {
+          "id": "FlY6q5mPoJkKDDVT",
+          "name": "Postiz account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "type": "schedule",
+        "date": "={{ $json.schedule_twitter }}",
+        "posts": {
+          "post": [
+            {
+              "integrationId": "cmnw8xlcc02oolc0yt50vfhj1",
+              "settings": {
+                "setting": [
+                  {
+                    "key": "__type",
+                    "stringValue": "x"
+                  },
+                  {
+                    "key": "who_can_reply_post",
+                    "stringValue": "everyone"
+                  }
+                ]
+              },
+              "value": {
+                "contentItem": [
+                  {
+                    "content": "={{ $json.twitter_caption }} {{ $json.twitter_hashtags ? $json.twitter_hashtags.join(\" \") : \"\" }}",
+                    "image": {
+                      "imageItem": [
+                        {
+                          "id": "={{ $json.id }}",
+                          "path": "={{ $json.path }}"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-postiz.postiz",
+      "typeVersion": 1,
+      "position": [
+        1344,
+        192
+      ],
+      "id": "7e1845dc-ba85-49e6-8ff5-f6f58c4ebf89",
+      "name": "Post to Twitter",
+      "credentials": {
+        "postizApi": {
+          "id": "FlY6q5mPoJkKDDVT",
+          "name": "Postiz account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "type": "schedule",
+        "date": "={{ $json.schedule_instagram }}",
+        "posts": {
+          "post": [
+            {
+              "integrationId": "cmnw8sair02ohlc0ylac57ubt",
+              "settings": {
+                "setting": [
+                  {
+                    "key": "__type",
+                    "stringValue": "instagram"
+                  },
+                  {
+                    "key": "post_type",
+                    "stringValue": "post"
+                  },
+                  {
+                    "key": "share_to_feed",
+                    "booleanValue": true,
+                    "valueType": "boolean"
+                  }
+                ]
+              },
+              "value": {
+                "contentItem": [
+                  {
+                    "content": "={{ $json.instagram_caption }} {{ $json.instagram_hashtags ? $json.instagram_hashtags.join(\" \") : \"\" }}",
+                    "image": {
+                      "imageItem": [
+                        {
+                          "id": "={{ $json.id }}",
+                          "path": "={{ $json.path }}"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-postiz.postiz",
+      "typeVersion": 1,
+      "position": [
+        1344,
+        384
+      ],
+      "id": "5521aed4-4fc0-4a38-8224-cd41ff4ed39d",
+      "name": "Post to Instagram account 1",
+      "credentials": {
+        "postizApi": {
+          "id": "FlY6q5mPoJkKDDVT",
+          "name": "Postiz account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "type": "schedule",
+        "date": "={{ $json.schedule_instagram_2 }}",
+        "posts": {
+          "post": [
+            {
+              "integrationId": "cmnw8fkjl02k7lc0y3sez5b61",
+              "settings": {
+                "setting": [
+                  {
+                    "key": "__type",
+                    "stringValue": "instagram"
+                  },
+                  {
+                    "key": "post_type",
+                    "stringValue": "post"
+                  },
+                  {
+                    "key": "share_to_feed",
+                    "booleanValue": true,
+                    "valueType": "boolean"
+                  }
+                ]
+              },
+              "value": {
+                "contentItem": [
+                  {
+                    "content": "={{ $json.instagram_caption }} {{ $json.instagram_hashtags ? $json.instagram_hashtags.join(\" \") : \"\" }}",
+                    "image": {
+                      "imageItem": [
+                        {
+                          "id": "={{ $json.id }}",
+                          "path": "={{ $json.path }}"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-postiz.postiz",
+      "typeVersion": 1,
+      "position": [
+        1344,
+        576
+      ],
+      "id": "75318316-8426-49d0-8563-823afe51ae6f",
+      "name": "Post to Instagram account 2",
+      "credentials": {
+        "postizApi": {
+          "id": "FlY6q5mPoJkKDDVT",
+          "name": "Postiz account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "type": "schedule",
+        "date": "={{ $json.schedule_instagram_3 }}",
+        "posts": {
+          "post": [
+            {
+              "integrationId": "cmnv9i7a8003dl60yylw8hlqq",
+              "settings": {
+                "setting": [
+                  {
+                    "key": "__type",
+                    "stringValue": "instagram"
+                  },
+                  {
+                    "key": "post_type",
+                    "stringValue": "post"
+                  },
+                  {
+                    "key": "share_to_feed",
+                    "booleanValue": true,
+                    "valueType": "boolean"
+                  }
+                ]
+              },
+              "value": {
+                "contentItem": [
+                  {
+                    "content": "={{ $json.instagram_caption }} {{ $json.instagram_hashtags ? $json.instagram_hashtags.join(\" \") : \"\" }}",
+                    "image": {
+                      "imageItem": [
+                        {
+                          "id": "={{ $json.id }}",
+                          "path": "={{ $json.path }}"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-postiz.postiz",
+      "typeVersion": 1,
+      "position": [
+        1344,
+        768
+      ],
+      "id": "94de18b5-8d94-4653-9d20-1a035595fbfe",
+      "name": "Post to Instagram account 3",
+      "credentials": {
+        "postizApi": {
+          "id": "FlY6q5mPoJkKDDVT",
+          "name": "Postiz account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "type": "schedule",
+        "date": "={{ $json.schedule_instagram_4 }}",
+        "posts": {
+          "post": [
+            {
+              "integrationId": "cmnveh8pb00btlc0ywdc8i28b",
+              "settings": {
+                "setting": [
+                  {
+                    "key": "__type",
+                    "stringValue": "instagram"
+                  },
+                  {
+                    "key": "post_type",
+                    "stringValue": "post"
+                  },
+                  {
+                    "key": "share_to_feed",
+                    "booleanValue": true,
+                    "valueType": "boolean"
+                  }
+                ]
+              },
+              "value": {
+                "contentItem": [
+                  {
+                    "content": "={{ $json.instagram_caption }} {{ $json.instagram_hashtags ? $json.instagram_hashtags.join(\" \") : \"\" }}",
+                    "image": {
+                      "imageItem": [
+                        {
+                          "id": "={{ $json.id }}",
+                          "path": "={{ $json.path }}"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-postiz.postiz",
+      "typeVersion": 1,
+      "position": [
+        1344,
+        960
+      ],
+      "id": "b06ac6e4-ba4e-4187-905c-4b0e33901991",
+      "name": "Post to Instagram account 4",
+      "credentials": {
+        "postizApi": {
+          "id": "FlY6q5mPoJkKDDVT",
+          "name": "Postiz account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "type": "schedule",
+        "date": "={{ $json.schedule_instagram_5 }}",
+        "posts": {
+          "post": [
+            {
+              "integrationId": "cmnv9oou0003sl60yob5ulxbs",
+              "settings": {
+                "setting": [
+                  {
+                    "key": "__type",
+                    "stringValue": "instagram"
+                  },
+                  {
+                    "key": "post_type",
+                    "stringValue": "post"
+                  },
+                  {
+                    "key": "share_to_feed",
+                    "booleanValue": true,
+                    "valueType": "boolean"
+                  }
+                ]
+              },
+              "value": {
+                "contentItem": [
+                  {
+                    "content": "={{ $json.instagram_caption }} {{ $json.instagram_hashtags ? $json.instagram_hashtags.join(\" \") : \"\" }}",
+                    "image": {
+                      "imageItem": [
+                        {
+                          "id": "={{ $json.id }}",
+                          "path": "={{ $json.path }}"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-postiz.postiz",
+      "typeVersion": 1,
+      "position": [
+        1344,
+        1152
+      ],
+      "id": "c09d4e29-f6ed-430d-8382-1e1f2fdd7064",
+      "name": "Post to Instagram account 5",
+      "credentials": {
+        "postizApi": {
+          "id": "FlY6q5mPoJkKDDVT",
+          "name": "Postiz account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "fileFolder",
+        "returnAll": true,
+        "filter": {
+          "folderId": {
+            "__rl": true,
+            "value": "1OVhnvB5KeGramfV6dyAEt8KpoHksTVJ5",
+            "mode": "list",
+            "cachedResultName": "Social Media Content",
+            "cachedResultUrl": "https://drive.google.com/drive/folders/1OVhnvB5KeGramfV6dyAEt8KpoHksTVJ5"
+          },
+          "whatToSearch": "files"
+        },
+        "options": {
+          "fields": [
+            "id",
+            "name",
+            "mimeType"
+          ]
+        }
+      },
+      "id": "2ff841b1-7ca7-4023-a325-8d2ecc6c3c20",
+      "name": "Get Instagram Media",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -1248,
+        432
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "TwWTXujH7bfOrcMF",
+          "name": "Google Drive OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.fileId }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -800,
+        432
+      ],
+      "id": "453e8d7b-8dc5-465d-b753-68d9024836f5",
+      "name": "Download file",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "TwWTXujH7bfOrcMF",
+          "name": "Google Drive OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "72393c48-a826-441a-b694-971364d4ac3a",
+              "name": "fileName",
+              "value": "={{ $json.fileName }}",
+              "type": "string"
+            },
+            {
+              "id": "3f5d31b9-683c-4dbc-9400-25ec1333fd78",
+              "name": "mimeType",
+              "value": "={{ $json.mimeType }}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -352,
+        480
+      ],
+      "id": "352614e6-d10b-4993-8e77-4e07f377aa2d",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "operation": "uploadFile",
+        "binaryProperty": "data"
+      },
+      "type": "n8n-nodes-postiz.postiz",
+      "typeVersion": 1,
+      "position": [
+        -128,
+        384
+      ],
+      "id": "32b5775a-b7c1-4d0d-b30c-31350f1e8624",
+      "name": "Postiz",
+      "credentials": {
+        "postizApi": {
+          "id": "FlY6q5mPoJkKDDVT",
+          "name": "Postiz account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4.1-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4.1-MINI"
+        },
+        "responses": {
+          "values": [
+            {
+              "role": "system",
+              "content": "=You are the social media voice for Grounded Fitness Acadiana, a functional fitness gym in Lafayette, Louisiana focused on coaching, strength, community, longevity, and real-life fitness.\n\nTone: warm, genuine, coaching-led. Never hype-driven, never salesy.\n\nEvery caption must be short, one or two sentences max, and grounded in real life. Write like a coach talking to the community, not like an ad.\n\nInclude a natural keyword phrase such as:\n* functional fitness\n* Lafayette gym\n* Acadiana fitness community\n\nOccasionally include a warm, low-pressure invite line such as:\n* \"Come train with us.\"\n* \"Consistency over perfection.\"\n* \"Every rep counts, every day counts.\"\n\nDo not include an invite line every time.\n\nHashtag strategy:\n* Instagram: 5 hashtags max\n* TikTok: 4-6 hashtags max\n* Twitter/X: 1-2 hashtags max\n\nRules:\n* Do not use em dashes or m-dashes. Use commas or periods instead.\n* Always include #GroundedFitnessAcadiana\n* Rotate hashtags. Do not repeat identical sets, except for #functionalfitness and #lafayettela\n* Mix broad, local, and niche tags (e.g. functional fitness, Lafayette/Acadiana, coaching/community)\n* Never use CrossFit branding, \"box\", \"WOD\", \"RX\", \"beast mode\", \"no excuses\", or extreme-transformation language\n* Never make health, weight-loss, injury-prevention, or medical claims or guarantees\n\nReturn ONLY valid JSON:\n{\n\"instagram_caption\": \"...\",\n\"twitter_caption\": \"...\",\n\"tiktok_caption\": \"...\",\n\"instagram_hashtags\": [],\n\"twitter_hashtags\": [],\n\"tiktok_hashtags\": []\n}"
+            },
+            {
+              "content": "=Generate social captions for this media file.\n\nFile name: {{ $json.fileName }}\nMime type: {{ $json.mimeType }}\n\nInstructions:\n- Keep every caption short and warm, one or two sentences max\n- Write like a coach sharing a moment from the gym, not an advertisement\n- Make the wording fresh and not repetitive\n- Avoid reusing these recent Instagram hashtags if possible: {{ $json.recentInstagramHashtags || \"\" }}\n- Avoid reusing these recent TikTok hashtags if possible: {{ $json.recentTikTokHashtags || \"\" }}\n- Avoid reusing these recent X hashtags if possible: {{ $json.recentTwitterHashtags || \"\" }}\n- Return ONLY valid JSON"
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.1,
+      "position": [
+        96,
+        576
+      ],
+      "id": "4afebf06-22af-433a-8f65-8d7b9ea1feff",
+      "name": "Message a model",
+      "credentials": {
+        "openAiApi": {
+          "id": "RWvp9whEZaz7glXY",
+          "name": "OpenAI account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        896,
+        576
+      ],
+      "id": "a596a3d2-22c3-46d8-aedc-ff513c4063e9",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "operation": "resize",
+        "width": 1080,
+        "height": 1080,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.editImage",
+      "typeVersion": 1,
+      "position": [
+        -352,
+        288
+      ],
+      "id": "275caaa0-7486-451a-a036-a76381201b4f",
+      "name": "Edit Image"
+    },
+    {
+      "parameters": {
+        "jsCode": "const item = $input.first().json;\nconst timeZone = 'America/Chicago';\n\nfunction getLocalParts(date, timeZone) {\n  const fmt = new Intl.DateTimeFormat('en-US', {\n    timeZone,\n    year: 'numeric',\n    month: '2-digit',\n    day: '2-digit',\n    weekday: 'short',\n    hour: '2-digit',\n    minute: '2-digit',\n    second: '2-digit',\n    hour12: false,\n  });\n\n  const parts = {};\n  for (const part of fmt.formatToParts(date)) {\n    if (part.type !== 'literal') {\n      parts[part.type] = part.value;\n    }\n  }\n  return parts;\n}\n\nfunction getTimeZoneOffsetMs(date, timeZone) {\n  const p = getLocalParts(date, timeZone);\n  const utcLike = Date.UTC(\n    Number(p.year),\n    Number(p.month) - 1,\n    Number(p.day),\n    Number(p.hour),\n    Number(p.minute),\n    Number(p.second)\n  );\n  return utcLike - date.getTime();\n}\n\nfunction makeZonedDate(year, month, day, hour, minute, timeZone) {\n  const guess = new Date(Date.UTC(year, month - 1, day, hour, minute, 0));\n  const offset = getTimeZoneOffsetMs(guess, timeZone);\n  return new Date(guess.getTime() - offset);\n}\n\nfunction randomOffsetMinutes(maxOffset) {\n  return Math.floor(Math.random() * (maxOffset * 2 + 1)) - maxOffset;\n}\n\nfunction addMinutes(isoString, minutes) {\n  const d = new Date(isoString);\n  d.setMinutes(d.getMinutes() + minutes);\n  return d.toISOString();\n}\n\nfunction nextSlot(daysAllowed, hour, minute, timeZone, varianceMinutes = 0) {\n  const now = new Date();\n\n  const weekdayMap = {\n    Sun: 0,\n    Mon: 1,\n    Tue: 2,\n    Wed: 3,\n    Thu: 4,\n    Fri: 5,\n    Sat: 6,\n  };\n\n  for (let i = 0; i < 14; i++) {\n    const probe = new Date(now.getTime() + i * 24 * 60 * 60 * 1000);\n    const local = getLocalParts(probe, timeZone);\n\n    const dayNum = weekdayMap[local.weekday];\n    if (!daysAllowed.includes(dayNum)) continue;\n\n    const offset = randomOffsetMinutes(varianceMinutes);\n    const totalMinutes = hour * 60 + minute + offset;\n    const adjustedHour = Math.floor(totalMinutes / 60);\n    const adjustedMinute = ((totalMinutes % 60) + 60) % 60;\n\n    const candidate = makeZonedDate(\n      Number(local.year),\n      Number(local.month),\n      Number(local.day),\n      adjustedHour,\n      adjustedMinute,\n      timeZone\n    );\n\n    if (candidate > now) {\n      return candidate.toISOString();\n    }\n  }\n\n  throw new Error('Could not find next valid schedule slot');\n}\n\nconst now = new Date();\nconst localNow = getLocalParts(now, timeZone);\nconst triggerHour = Number(localNow.hour);\n\nconst isMorningRun = triggerHour < 12;\n\nlet schedule_tiktok;\nlet schedule_twitter;\nlet schedule_instagram;\n\nif (isMorningRun) {\n  schedule_tiktok = nextSlot([0,1,2,3,4,5,6], 17, 30, timeZone, 35);\n  schedule_twitter = nextSlot([0,1,2,3,4,5,6], 9, 15, timeZone, 20);\n  schedule_instagram = nextSlot([0,1,2,3,4,5,6], 12, 30, timeZone, 30);\n} else {\n  schedule_tiktok = nextSlot([0,1,2,3,4,5,6], 21, 0, timeZone, 30);\n  schedule_twitter = nextSlot([0,1,2,3,4,5,6], 18, 30, timeZone, 20);\n  schedule_instagram = nextSlot([0,1,2,3,4,5,6], 19, 15, timeZone, 25);\n}\n\nreturn [{\n  json: {\n    ...item,\n    run_type: isMorningRun ? 'morning' : 'afternoon',\n    schedule_tiktok,\n    schedule_twitter,\n    schedule_instagram,\n    schedule_instagram_1: schedule_instagram,\n    schedule_instagram_2: addMinutes(schedule_instagram, 7),\n    schedule_instagram_3: addMinutes(schedule_instagram, 14),\n    schedule_instagram_4: addMinutes(schedule_instagram, 21),\n    schedule_instagram_5: addMinutes(schedule_instagram, 28),\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1120,
+        576
+      ],
+      "id": "32564a7e-3c71-4daa-9417-d9818b055578",
+      "name": "Build schedule times"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "e5312c7a-ee0a-4a94-bd4d-16787d1a6b06",
+              "leftValue": "={{ $binary.data.mimeType }}",
+              "rightValue": "image/",
+              "operator": {
+                "type": "string",
+                "operation": "startsWith"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -576,
+        432
+      ],
+      "id": "068a2f19-04c1-481a-ab29-7e5a6618aae6",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "72393c48-a826-441a-b694-971364d4ac3a",
+              "name": "fileName",
+              "value": "={{ $json.fileName }}",
+              "type": "string"
+            },
+            {
+              "id": "3f5d31b9-683c-4dbc-9400-25ec1333fd78",
+              "name": "mimeType",
+              "value": "={{ $json.mimeType }}",
+              "type": "string"
+            },
+            {
+              "id": "3531591e-153d-4742-81e7-bd8e6bed4dd7",
+              "name": "videoTitle",
+              "value": "={{(() => {\nconst base = $json.fileName.replace(/\\.[^/.]+$/, '');\nreturn base.replace(/_\\d+$/, '').trim();\n})()}}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -352,
+        768
+      ],
+      "id": "0e13347b-11f9-49e7-8dae-e7fbedec4937",
+      "name": "Edit Fields Video"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4.1-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4.1-MINI"
+        },
+        "responses": {
+          "values": [
+            {
+              "role": "system",
+              "content": "=You are the social media voice for Grounded Fitness Acadiana, a functional fitness gym in Lafayette, Louisiana focused on coaching, strength, community, longevity, and real-life fitness.\n\nTone: warm, genuine, coaching-led. Never hype-driven, never salesy, never intimidating.\n\nEvery caption must be short, the opening line plus one short coaching-style sentence after it.\n\nEach caption must include a natural keyword phrase such as:\n* functional fitness\n* Lafayette gym\n* Acadiana fitness community\n\nThis must feel natural and not forced.\n\nOccasionally include a subtle, low-pressure line such as:\n* \"Consistency over perfection.\"\n* \"Come train with us.\"\n* \"Small steps, every day.\"\n\nDo not include this every time.\n\nHashtag strategy:\n* Instagram: 5 hashtags max\n* TikTok: 4-6 hashtags max\n* Twitter/X: 1-2 hashtags max\n\nRules:\n* Do not use em dashes or m-dashes. Use commas or periods instead.\n* Rotate hashtags. Do not repeat identical sets, except for #functionalfitness and #lafayettela\n* Always include #GroundedFitnessAcadiana\n* Mix:\n  * 1 broad tag\n  * 2 local/community tags\n  * 1 niche coaching tag\n* Never repeat the same hashtag set exactly\n* Avoid generic spam tags like #viral or #fyp unless they truly fit\n* Never use CrossFit branding, \"box\", \"WOD\", \"RX\", \"beast mode\", \"no excuses\", or extreme-transformation language\n* Never make health, weight-loss, injury-prevention, or medical claims or guarantees\n\nDo not repeat identical phrasing across captions. Slight variation is required.\n\nOutput ONLY valid JSON with these exact keys:\n{\n\"instagram_caption\": \"...\",\n\"twitter_caption\": \"...\",\n\"tiktok_caption\": \"...\",\n\"instagram_hashtags\": [],\n\"twitter_hashtags\": [],\n\"tiktok_hashtags\": []\n}"
+            },
+            {
+              "content": "=Video filename: {{ $json.fileName }}\nExtracted title: {{ $json.videoTitle }}\nMime type: {{ $json.mimeType }}\n\nInstructions:\n- Use the extracted title to understand what the clip shows (e.g. a movement, class, or coaching moment)\n- Start each caption with a short, natural reference to what's happening in the clip\n- After that opening line, add one short, warm, coaching-style sentence\n- Keep each caption short and genuine, not hype-driven\n- Keep wording fresh and not repetitive\n- Avoid reusing these recent Instagram hashtags if possible: {{ $json.recentInstagramHashtags || \"\" }}\n- Avoid reusing these recent TikTok hashtags if possible: {{ $json.recentTikTokHashtags || \"\" }}\n- Avoid reusing these recent X hashtags if possible: {{ $json.recentTwitterHashtags || \"\" }}\n- Return ONLY valid JSON"
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.1,
+      "position": [
+        96,
+        816
+      ],
+      "id": "68b7de00-288c-480d-9474-4c4751355f97",
+      "name": "Message a model video",
+      "credentials": {
+        "openAiApi": {
+          "id": "RWvp9whEZaz7glXY",
+          "name": "OpenAI account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const aiOutput = $input.first().json;\n\nlet rawText =\n  aiOutput.output?.[0]?.content?.[0]?.text ??\n  aiOutput.output?.text ??\n  aiOutput.text ??\n  '';\n\nif (typeof rawText === 'string') {\n  rawText = rawText\n    .replace(/^```json\\s*/i, '')\n    .replace(/^```\\s*/i, '')\n    .replace(/\\s*```$/i, '')\n    .trim();\n}\n\nlet parsed;\n\ntry {\n  parsed = typeof rawText === 'string' ? JSON.parse(rawText) : rawText;\n} catch (error) {\n  throw new Error(`Failed to parse AI output as JSON: ${rawText}`);\n}\n\nconst videoData = $('Edit Fields Video').first().json;\n\nreturn [{\n  json: {\n    ...videoData,\n    instagram_caption: parsed.instagram_caption || \"\",\n    twitter_caption: parsed.twitter_caption || \"\",\n    tiktok_caption: parsed.tiktok_caption || \"\",\n    instagram_hashtags: Array.isArray(parsed.instagram_hashtags) ? parsed.instagram_hashtags : [],\n    twitter_hashtags: Array.isArray(parsed.twitter_hashtags) ? parsed.twitter_hashtags : [],\n    tiktok_hashtags: Array.isArray(parsed.tiktok_hashtags) ? parsed.tiktok_hashtags : []\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        448,
+        816
+      ],
+      "id": "ad2c87e9-acf9-4e9a-b3ba-7076dd3f17e1",
+      "name": "Code parse video"
+    },
+    {
+      "parameters": {
+        "jsCode": "const allMedia = $input.all();\n\nif (allMedia.length === 0) {\n  throw new Error(\"No media files found in your Google Drive folder\");\n}\n\nconst sortedMedia = [...allMedia].sort((a, b) => {\n  const nameA = (a.json.name || '').trim();\n  const nameB = (b.json.name || '').trim();\n  return nameA.localeCompare(nameB, undefined, { numeric: true, sensitivity: 'base' });\n});\n\nconst globalData = $getWorkflowStaticData('global');\n\nif (globalData.currentIndex === undefined) {\n  globalData.currentIndex = 0;\n}\n\nif (globalData.currentIndex >= sortedMedia.length) {\n  globalData.currentIndex = 0;\n}\n\nconst selected = sortedMedia[globalData.currentIndex].json;\n\nglobalData.currentIndex += 1;\n\nreturn [{\n  json: {\n    fileId: selected.id,\n    fileName: selected.name,\n    mimeType: selected.mimeType || \"video/mp4\"\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1024,
+        432
+      ],
+      "id": "14c0c5ee-2b85-4051-8b37-667c68a21cbb",
+      "name": "Pick Next Media In Order"
+    },
+    {
+      "parameters": {
+        "jsCode": "const aiOutput = $input.first().json;\n\nlet rawText =\n  aiOutput.output?.[0]?.content?.[0]?.text ??\n  aiOutput.output?.text ??\n  aiOutput.text ??\n  '';\n\nif (typeof rawText === 'string') {\n  rawText = rawText\n    .replace(/^```json\\s*/i, '')\n    .replace(/^```\\s*/i, '')\n    .replace(/\\s*```$/i, '')\n    .trim();\n}\n\nlet parsed;\n\ntry {\n  parsed = typeof rawText === 'string' ? JSON.parse(rawText) : rawText;\n} catch (error) {\n  throw new Error(`Failed to parse AI output as JSON: ${rawText}`);\n}\n\nreturn [{\n  json: {\n    instagram_caption: parsed.instagram_caption || \"\",\n    twitter_caption: parsed.twitter_caption || \"\",\n    tiktok_caption: parsed.tiktok_caption || \"\",\n    instagram_hashtags: Array.isArray(parsed.instagram_hashtags) ? parsed.instagram_hashtags : [],\n    twitter_hashtags: Array.isArray(parsed.twitter_hashtags) ? parsed.twitter_hashtags : [],\n    tiktok_hashtags: Array.isArray(parsed.tiktok_hashtags) ? parsed.tiktok_hashtags : []\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        448,
+        576
+      ],
+      "id": "15535148-450f-47f8-8fe9-7e9baed80f7a",
+      "name": "Parse Image JSON"
+    },
+    {
+      "parameters": {
+        "jsCode": "const globalData = $getWorkflowStaticData('global');\n\nconst recentInstagramHashtags = Array.isArray(globalData.recentInstagramHashtags)\n  ? globalData.recentInstagramHashtags\n  : [];\n\nconst recentTwitterHashtags = Array.isArray(globalData.recentTwitterHashtags)\n  ? globalData.recentTwitterHashtags\n  : [];\n\nconst recentTikTokHashtags = Array.isArray(globalData.recentTikTokHashtags)\n  ? globalData.recentTikTokHashtags\n  : [];\n\nreturn [{\n  json: {\n    ...$json,\n    recentInstagramHashtags: recentInstagramHashtags.join(', '),\n    recentTwitterHashtags: recentTwitterHashtags.join(', '),\n    recentTikTokHashtags: recentTikTokHashtags.join(', ')\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -128,
+        816
+      ],
+      "id": "654fb54d-ec8b-4a65-af1b-84b2b5fdad0e",
+      "name": "Load Recent Hashtags Video"
+    },
+    {
+      "parameters": {
+        "jsCode": "const globalData = $getWorkflowStaticData('global');\n\nconst recentInstagramHashtags = Array.isArray(globalData.recentInstagramHashtags)\n  ? globalData.recentInstagramHashtags\n  : [];\n\nconst recentTwitterHashtags = Array.isArray(globalData.recentTwitterHashtags)\n  ? globalData.recentTwitterHashtags\n  : [];\n\nconst recentTikTokHashtags = Array.isArray(globalData.recentTikTokHashtags)\n  ? globalData.recentTikTokHashtags\n  : [];\n\nreturn [{\n  json: {\n    ...$json,\n    recentInstagramHashtags: recentInstagramHashtags.join(', '),\n    recentTwitterHashtags: recentTwitterHashtags.join(', '),\n    recentTikTokHashtags: recentTikTokHashtags.join(', ')\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -128,
+        576
+      ],
+      "id": "c231be15-ddbd-45ed-8a1f-e1c05b787149",
+      "name": "Load Recent Hashtags Image"
+    },
+    {
+      "parameters": {
+        "jsCode": "const globalData = $getWorkflowStaticData('global');\n\nconst mergeUnique = (current, existing, limit = 20) => {\n  return [...current, ...existing]\n    .filter((tag, index, arr) => tag && arr.indexOf(tag) === index)\n    .slice(0, limit);\n};\n\nconst currentInstagram = Array.isArray($json.instagram_hashtags) ? $json.instagram_hashtags : [];\nconst currentTwitter = Array.isArray($json.twitter_hashtags) ? $json.twitter_hashtags : [];\nconst currentTikTok = Array.isArray($json.tiktok_hashtags) ? $json.tiktok_hashtags : [];\n\nconst existingInstagram = Array.isArray(globalData.recentInstagramHashtags) ? globalData.recentInstagramHashtags : [];\nconst existingTwitter = Array.isArray(globalData.recentTwitterHashtags) ? globalData.recentTwitterHashtags : [];\nconst existingTikTok = Array.isArray(globalData.recentTikTokHashtags) ? globalData.recentTikTokHashtags : [];\n\nglobalData.recentInstagramHashtags = mergeUnique(currentInstagram, existingInstagram);\nglobalData.recentTwitterHashtags = mergeUnique(currentTwitter, existingTwitter);\nglobalData.recentTikTokHashtags = mergeUnique(currentTikTok, existingTikTok);\n\nreturn [{ json: $json }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        672,
+        576
+      ],
+      "id": "554e3cbb-ace3-4303-99f5-72289ccbe53f",
+      "name": "Save Recent Hashtags Image"
+    },
+    {
+      "parameters": {
+        "jsCode": "const globalData = $getWorkflowStaticData('global');\n\nconst mergeUnique = (current, existing, limit = 20) => {\n  return [...current, ...existing]\n    .filter((tag, index, arr) => tag && arr.indexOf(tag) === index)\n    .slice(0, limit);\n};\n\nconst currentInstagram = Array.isArray($json.instagram_hashtags) ? $json.instagram_hashtags : [];\nconst currentTwitter = Array.isArray($json.twitter_hashtags) ? $json.twitter_hashtags : [];\nconst currentTikTok = Array.isArray($json.tiktok_hashtags) ? $json.tiktok_hashtags : [];\n\nconst existingInstagram = Array.isArray(globalData.recentInstagramHashtags) ? globalData.recentInstagramHashtags : [];\nconst existingTwitter = Array.isArray(globalData.recentTwitterHashtags) ? globalData.recentTwitterHashtags : [];\nconst existingTikTok = Array.isArray(globalData.recentTikTokHashtags) ? globalData.recentTikTokHashtags : [];\n\nglobalData.recentInstagramHashtags = mergeUnique(currentInstagram, existingInstagram);\nglobalData.recentTwitterHashtags = mergeUnique(currentTwitter, existingTwitter);\nglobalData.recentTikTokHashtags = mergeUnique(currentTikTok, existingTikTok);\n\nreturn [{ json: $json }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        672,
+        816
+      ],
+      "id": "ab625cc6-0ffb-4ed9-8155-c3c905ccf0fc",
+      "name": "Save Recent Hashtags Video"
+    }
+  ],
+  "pinData": {
+    "Schedule Posts": [
+      {
+        "json": {
+          "timestamp": "2026-04-14T11:20:38.285-05:00",
+          "Readable date": "April 14th 2026, 11:20:38 am",
+          "Readable time": "11:20:38 am",
+          "Day of week": "Tuesday",
+          "Year": "2026",
+          "Month": "April",
+          "Day of month": "14",
+          "Hour": "11",
+          "Minute": "20",
+          "Second": "38",
+          "Timezone": "America/Chicago (UTC-05:00)"
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ]
+  },
+  "connections": {
+    "Schedule Posts": {
+      "main": [
+        [
+          {
+            "node": "Get Instagram Media",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Instagram Media": {
+      "main": [
+        [
+          {
+            "node": "Pick Next Media In Order",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download file": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Load Recent Hashtags Image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message a model": {
+      "main": [
+        [
+          {
+            "node": "Parse Image JSON",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postiz": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Build schedule times",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Image": {
+      "main": [
+        [
+          {
+            "node": "Postiz",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build schedule times": {
+      "main": [
+        [
+          {
+            "node": "Post to TikTok",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Post to Twitter",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Post to Instagram account 1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Post to Instagram account 2",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Post to Instagram account 3",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Post to Instagram account 4",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Post to Instagram account 5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Edit Image",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields Video",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields Video": {
+      "main": [
+        [
+          {
+            "node": "Load Recent Hashtags Video",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Postiz",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message a model video": {
+      "main": [
+        [
+          {
+            "node": "Code parse video",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code parse video": {
+      "main": [
+        [
+          {
+            "node": "Save Recent Hashtags Video",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pick Next Media In Order": {
+      "main": [
+        [
+          {
+            "node": "Download file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Image JSON": {
+      "main": [
+        [
+          {
+            "node": "Save Recent Hashtags Image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Load Recent Hashtags Video": {
+      "main": [
+        [
+          {
+            "node": "Message a model video",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Load Recent Hashtags Image": {
+      "main": [
+        [
+          {
+            "node": "Message a model",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save Recent Hashtags Image": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save Recent Hashtags Video": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "b152e69b-9bc3-47b7-a311-05fce70ed39a",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "0e6938f3631fc2f277ab892db92f7d217c8890f32f7558c16b5840e08db1cb4e"
+  },
+  "id": "5KfnNj4VnNuoEOQz",
+  "tags": [],
+  "_grounded_adaptation_notes": [
+    "DRAFT ONLY \u2014 not in current build scope per SCOPE_BOUNDARIES.md (no Instagram/TikTok/Twitter automation, no publish-without-review).",
+    "AI prompts rewritten for Grounded Fitness Acadiana brand voice: coaching-led, warm, no hype, no CrossFit branding, no health claims, per ANCHOR.md and AI_RULES.md.",
+    "Hashtag strategy now uses #GroundedFitnessAcadiana, #functionalfitness, #lafayettela and local/community tags instead of the original 'Frankie Snow' rap persona tags.",
+    "Before this could ever run: replace the Google Drive folder ID, the 5 Postiz integration IDs (currently from an unrelated client/account), and the Postiz/OpenAI/Google Drive credential references with Grounded's own.",
+    "Workflow is set to active:false intentionally.",
+    "Per AI_RULES.md, any publish step should route to a human-review queue (e.g. a Drive folder, Slack channel, or draft state) rather than posting directly."
+  ]
+}
